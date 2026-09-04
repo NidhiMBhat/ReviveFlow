@@ -8,6 +8,7 @@ import Razorpay from 'razorpay';
 import { sendRecoveryEmail } from '../services/emailDispatcher';
 import { Queue, Worker } from 'bullmq';
 import IORedis from 'ioredis';
+
 // const connection = {
 //   host: process.env.REDIS_HOST || 'localhost',
 //   port: Number(process.env.REDIS_PORT) || 6379,
@@ -21,8 +22,8 @@ const razorpay = new Razorpay({
   key_id: process.env.RAZORPAY_KEY_ID || '',
   key_secret: process.env.RAZORPAY_KEY_SECRET || '',
 });
-
 const shouldUseRedis = !(process.env.REDIS_DISABLED === 'true');
+
 // Queue is optional in local/dev environments; this prevents server startup crashes
 export const recoveryQueue = shouldUseRedis
   ? new Queue('payment-recovery-queue', { connection })
@@ -80,8 +81,7 @@ if (policyDecision.decision === 'APPROVED') {
   const customerName = paymentEntity.name || 'Valued Merchant Customer';
  
           const customerContact = paymentEntity.contact || '9999999999'; // Fallback contact number
- const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:3000';
-let liveUrl = `${frontendUrl}/retry?amount=${amount}`;
+ let liveUrl = `http://localhost:3000/retry?amount=${amount}`; // Fallback
           try {
             const paymentLink = await razorpay.paymentLink.create({
               amount: amount * 100, // Razorpay expects paise
