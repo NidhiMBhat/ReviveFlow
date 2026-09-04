@@ -1,0 +1,43 @@
+node_modules
+# Keep environment variables out of version control
+
+
+/generated/prisma
+# Environment variables
+.env
+.env.local
+.env.*
+
+# Dependencies
+node_modules/
+
+# Build outputs
+.next/
+dist/
+build/
+# dependencies
+**/node_modules/
+
+# env files
+**/.env
+**/.env.*
+!.env.example
+
+# build outputs
+**/.next/
+**/out/
+**/dist/
+**/build/
+**/coverage/
+
+# logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# prisma generated
+server/generated/prisma/
+
+# os
+.DS_Store

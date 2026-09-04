@@ -1,0 +1,49 @@
+datasource db {
+  provider = "postgresql"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Merchant {
+  id            String    @id @default(uuid())
+  name          String
+  email         String    @unique
+  webhookSecret String
+  razorpayKeyId String
+  createdAt     DateTime  @default(now())
+  auditLogs     AuditLog[]
+}
+
+model Subscription {
+  id            String   @id
+  customerId    String
+  amount        Float
+  status        String
+  failureReason String
+  intentPersona String
+  createdAt     DateTime @default(now())
+}
+
+model AuditLog {
+  id               String    @id @default(uuid())
+  merchantId       String?   
+  merchant         Merchant? @relation(fields: [merchantId], references: [id])
+  subscriptionId   String
+  action           String
+  aiConfidence     Float
+  policyDecision   String
+  outcome          String
+  revenueRecovered Float
+  complianceNote   String?
+  outreachMessage  String?
+  timestamp        DateTime  @default(now())
+}
+
+model PolicyRule {
+  id                    String   @id @default("default")
+  maxAutoRecoveryAmount Float    @default(5000)
+  maxRetryAttempts      Int      @default(2)
+  autonomyMode          String   @default("AUTONOMOUS")
+}
