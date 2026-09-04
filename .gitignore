@@ -24,3 +24,9 @@ server/generated/prisma/
 
 # os
 .DS_Store
+.agents/
+.claude/
+.windsurf/
+AGENTS.md
+CLAUDE.md
+skills-lock.json
