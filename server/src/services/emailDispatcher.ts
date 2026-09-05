@@ -1,16 +1,18 @@
 import nodemailer from 'nodemailer';
 import dotenv from 'dotenv';
-
+import dns from 'dns';
 dotenv.config();
-
+dns.setDefaultResultOrder('ipv4first');
 // Configure transporter (Using Gmail or a free SMTP test service like Ethereal/Mailtrap)
 // For local testing, you can use a standard Gmail App Password or leave it to simulate cleanly.
 const transporter = nodemailer.createTransport({
-  service: 'gmail',
+  host: 'smtp.gmail.com', // Use host instead of service: 'gmail'
+  port: 465,
+  secure: true,
   auth: {
-    user: process.env.EMAIL_USER || '', // e.g. your-email@gmail.com
-    pass: process.env.EMAIL_PASS || '', // e.g. your Gmail App Password
-  },
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
+  }
 });
 
 /**
