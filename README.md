@@ -516,7 +516,6 @@ Revenue Recovery
 
 Potential extensions include:
 
-- 📱 WhatsApp/SMS recovery channels
 - 🧠 Reinforcement learning from successful recovery outcomes
 - 📊 Recovery-rate and revenue-impact analytics
 - 🌍 Additional regional languages
@@ -545,6 +544,4 @@ GitHub: [@NidhiMBhat](https://github.com/NidhiMBhat)
 
 ---
 
-## 📄 License
 
-Add your preferred license here, such as MIT, if applicable.
