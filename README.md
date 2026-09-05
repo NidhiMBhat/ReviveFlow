@@ -314,7 +314,7 @@ ReviveFlow/
 │
 ├── server/                 # Node.js / Express backend
 │   ├── controllers/
-│   ├── utils
+│   ├── utils/
 │   ├── queues/
 │   ├── services/
 │   ├── prisma/
