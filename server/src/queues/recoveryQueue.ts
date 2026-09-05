@@ -81,7 +81,8 @@ if (policyDecision.decision === 'APPROVED') {
   const customerName = paymentEntity.name || 'Valued Merchant Customer';
  
           const customerContact = paymentEntity.contact || '9999999999'; // Fallback contact number
- let liveUrl = `http://localhost:3000/retry?amount=${amount}`; // Fallback
+ const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:3000';
+let liveUrl = `${frontendUrl}/retry?amount=${amount}`;// Fallback
           try {
             const paymentLink = await razorpay.paymentLink.create({
               amount: amount * 100, // Razorpay expects paise

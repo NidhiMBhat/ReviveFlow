@@ -18,7 +18,10 @@ const razorpay = new Razorpay({
   key_secret: process.env.RAZORPAY_KEY_SECRET || '',
 });
 
-app.use(cors());
+app.use(cors({
+  origin: '*', // The safest/fastest setting for a buildathon to avoid blocked requests
+  credentials: true
+}));
 app.use(express.json());
 
 // Secure Webhook Route with HMAC-SHA256 Middleware
