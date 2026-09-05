@@ -28,6 +28,7 @@ interface Merchant {
   name: string;
   email: string;
 }
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
 
 export default function WarRoomDashboard() {
   const [merchant, setMerchant] = useState<Merchant | null>(null);
@@ -37,10 +38,8 @@ export default function WarRoomDashboard() {
   const [selectedLog, setSelectedLog] = useState<AuditLog | null>(null);
   const [isPlaybookOpen, setIsPlaybookOpen] = useState(false);
 
-  const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
-  export const api = axios.create({
-  baseURL: API_URL,
-});
+  
+  
   useEffect(() => {
     const savedSession = localStorage.getItem('reviveflow_merchant_session');
     if (savedSession) {
