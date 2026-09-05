@@ -310,18 +310,21 @@ ReviveFlow/
 ├── client/                 # Next.js frontend
 │   ├── app/
 │   ├── components/
-│   └── ...
+│   └── lib/
 │
 ├── server/                 # Node.js / Express backend
 │   ├── controllers/
-│   ├── routes/
-│   ├── workers/
+│   ├── utils
+│   ├── queues/
 │   ├── services/
 │   ├── prisma/
-│   └── ...
-│
+│   └── agents/
+|   |__ gateway/
+|   |__ middlewares/
+|   |__index.ts
+|
 ├── README.md
-└── ...
+
 ```
 
 > The exact structure may vary depending on the current implementation.
